@@ -42,6 +42,19 @@ def find_and_click(template_path, confidence=CONFIDENCE):
     screen_np = np.array(screenshot)
     screen_bgr = cv2.cvtColor(screen_np, cv2.COLOR_RGB2BGR)
     
+    # Check if template is larger than screen, resize it
+    screen_h, screen_w = screen_bgr.shape[:2]
+    template_h, template_w = template.shape[:2]
+    
+    if template_h > screen_h or template_w > screen_w:
+        # Template is larger than screen, this shouldn't happen
+        # Try to resize it to fit
+        scale = min(screen_h / template_h, screen_w / template_w)
+        new_h = int(template_h * scale)
+        new_w = int(template_w * scale)
+        template = cv2.resize(template, (new_w, new_h), interpolation=cv2.INTER_AREA)
+        print(f"WARNING: {template_path} was larger than screen, resized to {new_w}x{new_h}")
+    
     result = cv2.matchTemplate(screen_bgr, template, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     
@@ -130,7 +143,7 @@ def main():
     rounds = int(sys.argv[1]) if len(sys.argv) > 1 else 5
     print(f"POE2 Temple Farming - Mage (Elementalist) Fly Thunder")
     print(f"Total rounds: {rounds}")
-    print("\n⚠️  IMPORTANT:")
+    print("\n!!! IMPORTANT:")
     print(f"- Game window must be visible")
     print(f"- Templates must be in ./templates/ (entry-button.png, accept-button.png, exit-portal.png)")
     print(f"- Skills: {SKILL1_KEY}=main, {SKILL2_KEY}=movement, {FLASK_KEY}=flask")
