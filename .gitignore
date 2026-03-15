@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Media - inbound/outbound media files don't need sync
+media/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Environment variables/secrets
+*.env
+.env
+.env.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Large output files that can be regenerated
+# Keep dist for packaged skills though - they are small
+
+# Don't sync secrets in config
+# openclaw.json contains redacted API keys already but keep ignored if you have local changes
+openclaw.json.local

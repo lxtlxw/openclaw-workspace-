@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "trendradar": {
+      "command": "npx",
+      "args": ["trendradar-mcp"],
+      "env": {
+        "TREND_RADAR_API_KEY": "your-api-key-here"
+      }
+    }
+  }
+}
