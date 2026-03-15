@@ -1,0 +1,25 @@
+import requests
+import os
+import json
+
+api_key = "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"
+
+query = "2026年3月5日 日柱 干支"
+
+response = requests.post(
+    "https://api.tavily.com/search",
+    headers={"Content-Type": "application/json"},
+    json={
+        "api_key": api_key,
+        "query": query,
+        "max_results": 3,
+        "search_depth": "basic",
+        "include_answer": True
+    }
+)
+
+result = response.json()
+print(result.get("answer", "无"))
+for r in result.get("results", []):
+    print(f"- {r['title']}")
+    print(f"  {r['content'][:200]}...")
