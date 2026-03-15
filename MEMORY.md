@@ -141,3 +141,8 @@
   - 支持XML生成、Mermaid转换、CSV转流程图
   - 聊天内联预览，周下载 17.2K+
   - 已验证打包完成：`dist/mcp-drawio.skill`
+- 2026-03-15 成功创建新技能 `desktop-control` - 桌面自动化控制：
+  - 全屏截图、鼠标移动/点击/拖拽、键盘输入、图像模板匹配点击
+  - 支持游戏操作、浏览器控制、桌面应用自动化
+  - 所有操作封装为独立Python脚本，直接调用
+  - 基于PyAutoGUI，成熟稳定，已验证打包完成：`dist/desktop-control.skill`
